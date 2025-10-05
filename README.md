@@ -13,7 +13,7 @@ A collection of tools and utilities built in the spirit of Unix philosophy: do o
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/hworld.git
+   git clone https://github.com/Ruckusist/hworld.git
    cd hworld
    ```
 
@@ -23,9 +23,14 @@ A collection of tools and utilities built in the spirit of Unix philosophy: do o
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. Install dependencies (if any):
+3. Install the package in development mode:
    ```bash
-   pip install -r requirements.txt
+   pip install -e .
+   ```
+
+4. Run the tool:
+   ```bash
+   hworld
    ```
 
 ## Development
