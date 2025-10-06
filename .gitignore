@@ -122,4 +122,8 @@ Thumbs.db
 
 # local
 .github/proposals/*
+.github/*.md
 vendor/*
+/data/*
+*.txt
+*.data

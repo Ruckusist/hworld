@@ -19,6 +19,11 @@ COPY pyproject.toml /app/
 RUN pip install --no-cache-dir -e /app/vendor/deskapp && \
     pip install --no-cache-dir -e /app
 
+# Copy startup script and set permissions (as root)
+COPY hworld/webapp/start.sh /app/start.sh
+RUN chmod +x /app/start.sh && \
+    chown hworld:hworld /app/start.sh
+
 # Create data directory for persistence
 RUN mkdir -p /data && chown hworld:hworld /data
 
@@ -28,8 +33,11 @@ USER hworld
 # Expose server port
 EXPOSE 28080
 
+# Expose webapp port
+EXPOSE 8080
+
 # Set data directory
 WORKDIR /data
 
-# Run server
-CMD ["python", "-m", "hworld.server"]
+# Run both server and webapp
+CMD ["/app/start.sh"]

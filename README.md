@@ -10,6 +10,16 @@ things simple and modular.
 - **Hworld CLI**: Simple Unix-inspired CLI tool
 - **Hworld Server**: Network server with authentication and pub/sub
   messaging using the deskapp framework
+- **Hworld WebApp**: Browser-based client with terminal-style UI
+- **Hworld Client**: Terminal-based TUI client (curses)
+
+## Default Login
+
+All hworld components use a single authentication system:
+- **Username**: `dude`
+- **Password**: `pass`
+
+(Automatically created on first server startup)
 
 ## Project Philosophy
 
@@ -52,12 +62,13 @@ things simple and modular.
 #### Quick Start with Docker
 
 ```bash
-# Build and run
+# Build and run (server + webapp)
 ./scripts/docker-build.sh
 ./scripts/docker-run.sh
 
-# Server is now running on port 28080
-# Data persists in ./data directory
+# Server running on port 28080
+# WebApp running on port 8080
+# Visit http://localhost:8080 in browser
 ```
 
 #### Local Development
@@ -67,12 +78,29 @@ things simple and modular.
 pip install -e vendor/deskapp
 pip install -e .
 
-# Run server
+# Terminal 1: Run server
 hworld-server
+
+# Terminal 2: Run webapp
+hworld-webapp
+
+# Visit http://localhost:8080
 ```
 
-See [hworld/server/README.md](hworld/server/README.md) for detailed
-server documentation.
+#### Terminal Client
+
+```bash
+# Connect to local server
+hworld-client
+
+# Connect to Docker server
+HWORLD_SERVER_HOST=localhost hworld-client
+```
+
+See [hworld/server/README.md](hworld/server/README.md),
+[hworld/webapp/README.md](hworld/webapp/README.md), and
+[hworld/client/README.md](hworld/client/README.md) for detailed
+documentation.
 
 ## Development
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- hworld/webapp/templates/index.html -->
+<!-- last updated: 10-5-25 -->
+<!-- credit: Claude Sonnet 4.5 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hworld - Web Client</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hworld Web Client</h1>
+
+        <div id="loginSection">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username"
+                           name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password"
+                           name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div id="mainSection" style="display: none;">
+            <h2>Welcome, <span id="currentUser"></span>!</h2>
+            <button id="testBtn">Test Server (Ping)</button>
+            <button id="logoutBtn">Logout</button>
+            <div id="output"></div>
+        </div>
+
+        <div id="status"></div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

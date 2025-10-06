@@ -2,25 +2,24 @@
 # last updated: 10-5-25
 # credit: Claude Sonnet 4.5
 
-version: "3.8"
-
 services:
   hworld-server:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: hworld-server:latest
     container_name: hworld-server
     ports:
       - "28080:28080"
+      - "8080:8080"
     volumes:
       - ./data:/data
     environment:
-      - HWORLD_HOST=0.0.0.0
-      - HWORLD_PORT=28080
-      - HWORLD_BUFFER=1024
-      - HWORLD_VERBOSE=true
+      HWORLD_HOST: "0.0.0.0"
+      HWORLD_PORT: "28080"
+      HWORLD_BUFFER: "1024"
+      HWORLD_VERBOSE: "true"
+      HWORLD_SERVER_HOST: "localhost"
+      HWORLD_SERVER_PORT: "28080"
     restart: unless-stopped
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+

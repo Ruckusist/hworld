@@ -1,5 +1,164 @@
 # Hworld Changelog
 
+## 2025-10-05 - Terminal Client Implementation COMPLETE
+- Created terminal-based TUI client for hworld server
+- Credit: Claude Sonnet 4.5
+
+### Hworld Terminal Client
+- Created hworld/client module
+  * client/__init__.py - exports HworldClient
+  * client/app.py - HworldClient deskapp Module (~150 lines)
+  * client/__main__.py - curses entry point
+  * client/README.md - documentation
+- Implemented as deskapp Module
+  * Inherits from deskapp.Module
+  * Uses deskapp's curses framework
+  * Uses deskapp.server.ClientSession for server communication
+- Features:
+  * Connect/disconnect from server
+  * Interactive login (username/password prompts)
+  * Test server connection (ping/pong)
+  * Message history display
+  * Clean curses UI
+- Commands:
+  * c - Connect to server
+  * l - Login (prompts for credentials)
+  * t - Test ping
+  * o - Logout
+  * d - Disconnect
+  * q - Quit
+- Configuration via environment variables:
+  * HWORLD_SERVER_HOST (default: localhost)
+  * HWORLD_SERVER_PORT (default: 28080)
+- Entry point: hworld-client command
+- Can connect to local server or Docker server
+
+### Integration
+- Added hworld-client entry point to pyproject.toml
+- Tested with running server ✓
+- Works with Docker-deployed server
+- Total implementation: ~150 lines
+
+### Documentation
+- Created hworld/client/README.md
+  * Usage instructions
+  * Command reference
+  * Connection examples
+  * Troubleshooting guide
+- Updated main README.md
+  * Added terminal client feature
+  * Usage examples
+
+## Complete Hworld Stack
+```
+┌────────────────────┐
+│  Terminal Client   │  hworld-client (curses TUI)
+│  (deskapp Module)  │
+└──────────┬─────────┘
+           │
+┌──────────┴─────────┐
+│   Browser Client   │  http://localhost:8080
+│   (Flask WebApp)   │
+└──────────┬─────────┘
+           │
+           │ TCP Socket + deskapp.Message
+           ↓
+┌────────────────────┐
+│   Hworld Server    │  tcp://localhost:28080
+│  (deskapp.server)  │  Authentication + Pub/Sub
+└──────────┬─────────┘
+           │
+           ↓
+┌────────────────────┐
+│    users.data      │  Persistent storage
+└────────────────────┘
+```
+
+## Three Ways to Connect
+1. **Terminal Client**: `hworld-client` (curses TUI)
+2. **Web Client**: http://localhost:8080 (browser)
+3. **Python Client**: examples/test_client.py (script)
+
+## 2025-10-05 - WebApp Integration COMPLETE
+- Implemented web-based client for hworld server
+- Credit: Claude Sonnet 4.5
+
+### Deskapp WebApp Framework Created
+- Created vendor/deskapp/deskapp/webapp module
+  * webapp/__init__.py - exports WebApp class
+  * webapp/server.py - Flask-based WebApp class
+  * Simple API: WebApp(Name, Host, Port, TemplateFolder, StaticFolder)
+  * Supports route decorators and template rendering
+  * Built-in health check endpoint
+- Added flask dependency to deskapp/pyproject.toml
+
+### Hworld WebApp Implementation
+- Created hworld/webapp module (minimal implementation)
+  * webapp/__init__.py - exports CreateApp
+  * webapp/__main__.py - entry point (hworld-webapp command)
+  * webapp/app.py - Flask app using deskapp.webapp
+  * API endpoints: /api/login, /api/test
+  * Connects to hworld server via socket + deskapp Message
+- Created web frontend (terminal-style UI)
+  * templates/index.html - login and main interface
+  * static/style.css - green-on-black terminal theme
+  * static/app.js - client-side logic for login/test
+- Total implementation: ~150 lines (thin wrapper on deskapp)
+
+### Docker Integration Updated
+- Updated Dockerfile to run both server and webapp
+  * Exposes ports 28080 (server) and 8080 (webapp)
+  * Created start.sh script to launch both processes
+  * Both run in same container for simplicity
+- Updated docker-compose.yml
+  * Added port mapping for 8080
+  * Added environment variables for server connection
+  * HWORLD_SERVER_HOST and HWORLD_SERVER_PORT
+- Docker now provides complete stack in one command
+
+### Dependencies and Configuration
+- Added flask to hworld/pyproject.toml dependencies
+- Added hworld-webapp entry point to scripts
+- Environment variable configuration for server connection
+
+### Testing
+- Tested server + webapp locally (both running)
+  * Server on port 28080 ✓
+  * WebApp on port 8080 ✓
+  * Login functionality working ✓
+  * Test/ping working ✓
+  * Terminal-style UI rendering ✓
+
+### Documentation
+- Created hworld/webapp/README.md
+  * Usage instructions
+  * API endpoint documentation
+  * Architecture diagram
+  * Configuration options
+- Updated main README.md
+  * Added webapp feature description
+  * Updated quick start to include webapp
+  * Browser access instructions
+
+## Architecture Summary
+```
+Browser (http://localhost:8080)
+    ↓
+Hworld WebApp (Flask on port 8080)
+    ↓ (socket + deskapp.Message)
+Hworld Server (deskapp.server on port 28080)
+    ↓
+User Database (users.data)
+```
+
+## Complete Stack
+- **deskapp.server**: TCP server with auth + pub/sub
+- **deskapp.webapp**: Flask web framework
+- **hworld.server**: Minimal server implementation (~70 lines)
+- **hworld.webapp**: Minimal web client (~150 lines)
+- **Docker**: Single container running both
+- **Frontend**: Terminal-style web UI
+
 ## 2025-10-05 - Deskapp Server Integration COMPLETE
 - Implemented complete server integration per proposal
 - Credit: Claude Sonnet 4.5
@@ -100,6 +259,70 @@
 ## 2025-10-05 - DeskappServerIntegration Proposal (Final)
 - Created proposal with proper separation of concerns
 - Architecture:
+```
+┌───────────────┐
+│Terminal Client│  Curses TUI (hworld-client)
+└───────┬───────┘
+        │
+┌───────┴───────┐
+│   Browser     │  HTTP interface
+└───────┬───────┘
+        │ HTTP
+        ↓
+┌───────────────┐
+│Hworld WebApp  │  Flask on :8080
+└───────┬───────┘
+        │ TCP + Message
+        ↓
+┌───────────────┐
+│Hworld Server  │  TCP on :28080
+└───────┬───────┘
+        │
+        ↓
+┌───────────────┐
+│  users.data   │
+└───────────────┘
+```
+
+Documentation Updates (2025-01-14):
+- Updated README.md with terminal client feature
+- Updated QUICKSTART.md with complete three-client guide
+- Added "Three Ways to Connect" section
+- Updated architecture diagram in multiple files
+- Created hworld/client/README.md with usage guide
+- Added testing section showing all three client types
+
+Stability Fix (2025-10-05):
+- Fixed bcrypt password length error in engine.py
+- Switched from passlib to direct bcrypt usage
+- Replaced passlib.hash.bcrypt with native bcrypt module
+- Added 72-byte password truncation in HashPassword()
+- Added 72-byte password truncation in CheckPassword()
+- Prevents ValueError crashes on long password attempts
+- Resolves passlib/bcrypt version compatibility issues
+- Credit: Claude Sonnet 4.5
+
+Default Admin User (2025-10-05):
+- Added CreateDefaultAdmin() method to engine.py
+- Automatically creates user "dude" with password "pass"
+- Only creates admin when no users exist
+- Saves to users.data on first startup
+- Provides immediate login capability for new installations
+- Credit: Claude Sonnet 4.5
+
+Docker Fix (2025-10-05):
+- Fixed Dockerfile permission issue with start.sh
+- Moved COPY and chmod commands before USER switch
+- Now sets permissions as root before switching to hworld user
+- Resolves "Operation not permitted" error during build
+- Updated scripts to use `docker compose` (v2) instead of
+  `docker-compose` (v1)
+- Simplified docker-compose.yml environment syntax for
+  compatibility
+- Removed obsolete version field from docker-compose.yml
+- Tested and verified: Both server (28080) and webapp (8080)
+  running successfully
+- Credit: Claude Sonnet 4.5
   * deskapp (vendor/) = reusable server framework (heavy lifting)
   * hworld = application using deskapp (light implementation)
 - Proposal includes 7 phases:

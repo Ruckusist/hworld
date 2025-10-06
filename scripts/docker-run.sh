@@ -10,7 +10,7 @@ mkdir -p ./data
 
 echo "Starting hworld-server..."
 
-docker-compose up -d
+docker compose up -d
 
-echo "Server started. Logs: docker-compose logs -f"
-echo "Stop: docker-compose down"
+echo "Server started. Logs: docker compose logs -f"
+echo "Stop: docker compose down"

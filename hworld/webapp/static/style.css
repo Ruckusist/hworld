@@ -1,0 +1,113 @@
+/* hworld/webapp/static/style.css */
+/* last updated: 10-5-25 */
+/* credit: Claude Sonnet 4.5 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #1a1a1a;
+    color: #00ff00;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #2a2a2a;
+    padding: 30px;
+    border-radius: 8px;
+    border: 2px solid #00ff00;
+}
+
+h1 {
+    color: #00ff00;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 0 10px #00ff00;
+}
+
+h2 {
+    color: #00ff00;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #00ff00;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #1a1a1a;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #00ff00;
+    box-shadow: 0 0 5px #00ff00;
+}
+
+button {
+    background-color: #1a1a1a;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #00ff00;
+    color: #1a1a1a;
+}
+
+#status {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#status.success {
+    background-color: #004400;
+    border: 1px solid #00ff00;
+}
+
+#status.error {
+    background-color: #440000;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+}
+
+#output {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #1a1a1a;
+    border: 1px solid #00ff00;
+    min-height: 100px;
+    font-family: 'Courier New', monospace;
+}
+
+#mainSection {
+    margin-top: 20px;
+}

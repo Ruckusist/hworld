@@ -21,6 +21,7 @@ classifiers = [
 ]
 dependencies = [
     "passlib[bcrypt]",
+    "flask",
 ]
 
 [project.urls]
@@ -31,6 +32,8 @@ Issues = "https://github.com/ruckusist/hworld/issues"
 [project.scripts]
 hworld = "hworld.__main__:main"
 hworld-server = "hworld.server.__main__:Main"
+hworld-webapp = "hworld.webapp.__main__:Main"
+hworld-client = "hworld.client.__main__:Main"
 
 [tool.setuptools.packages.find]
 where = ["."]

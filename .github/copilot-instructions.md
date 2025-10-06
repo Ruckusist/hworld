@@ -66,4 +66,7 @@ proposals: /home/ruckus/code/hworld/.github/proposals/
     - always prefer building our own tools.
     - always work in complete sections. Do not leave half done code.
 
-
+-) Guidelines in general
+    - always follow the above conventions.
+    - leave the documentation to another bot. dont do it. just keep working.
+    - always roll the version in the documentation every time the code is changed.
