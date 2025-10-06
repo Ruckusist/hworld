@@ -1,15 +1,29 @@
+````markdown
 # Hworld
 
-A collection of tools and utilities built in the spirit of Unix philosophy: do one thing well, compose with other tools, and keep things simple and modular.
+A collection of tools and utilities built in the spirit of Unix
+philosophy: do one thing well, compose with other tools, and keep
+things simple and modular.
+
+## Features
+
+- **Hworld CLI**: Simple Unix-inspired CLI tool
+- **Hworld Server**: Network server with authentication and pub/sub
+  messaging using the deskapp framework
 
 ## Project Philosophy
 
 - **Python First**: We prefer Python classes and keep functions small.
-- **Clean Code**: 4-space indentation, CamelCase naming, double quotes, 79-character lines.
-- **Self-Contained**: Build our own tools rather than relying on external dependencies where possible.
-- **Unix Inspired**: Think in terms of pipes, filters, and composable components.
+- **Clean Code**: 4-space indentation, CamelCase naming, double quotes,
+  79-character lines.
+- **Self-Contained**: Build our own tools rather than relying on
+  external dependencies where possible.
+- **Unix Inspired**: Think in terms of pipes, filters, and composable
+  components.
 
 ## Getting Started
+
+### CLI Tool
 
 1. Clone the repository:
    ```bash
@@ -33,9 +47,37 @@ A collection of tools and utilities built in the spirit of Unix philosophy: do o
    hworld
    ```
 
+### Server
+
+#### Quick Start with Docker
+
+```bash
+# Build and run
+./scripts/docker-build.sh
+./scripts/docker-run.sh
+
+# Server is now running on port 28080
+# Data persists in ./data directory
+```
+
+#### Local Development
+
+```bash
+# Install dependencies
+pip install -e vendor/deskapp
+pip install -e .
+
+# Run server
+hworld-server
+```
+
+See [hworld/server/README.md](hworld/server/README.md) for detailed
+server documentation.
+
 ## Development
 
-- Follow the coding standards outlined in `.github/copilot-instructions.md`
+- Follow the coding standards outlined in
+  `.github/copilot-instructions.md`
 - Keep functions and files small
 - Work in complete sections
 - Always credit changes in the changelog
@@ -50,3 +92,5 @@ A collection of tools and utilities built in the spirit of Unix philosophy: do o
 ## License
 
 [Add license information here]
+
+````

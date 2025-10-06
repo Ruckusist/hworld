@@ -55,8 +55,6 @@ proposals: /home/ruckus/code/hworld/.github/proposals/
 
 -) Guidelines for implementations
     - always credit your changes in the file and in the changelog.
-    - always work from a plan.
-    - always start from a committed unchanged state.
     - always keep functions small and files small.
     - always use classes.
     - always use 4 spaces for indentation, never tabs.

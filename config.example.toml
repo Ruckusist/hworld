@@ -1,0 +1,17 @@
+# config.example.toml
+# Hworld Server Configuration
+# last updated: 10-5-25
+# credit: Claude Sonnet 4.5
+
+[server]
+# Host to bind to (0.0.0.0 for all interfaces, localhost for local)
+host = "0.0.0.0"
+
+# Port to listen on
+port = 28080
+
+# Buffer size for network operations
+buffer_size = 1024
+
+# Enable verbose logging
+verbose = true

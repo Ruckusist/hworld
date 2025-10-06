@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hworld"
-version = "0.1.0"
-description = "A collection of Unix-inspired tools built with Python"
+version = "0.2.0"
+description = "A collection of Unix-inspired tools with server"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8"
@@ -19,7 +19,9 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
-dependencies = []
+dependencies = [
+    "passlib[bcrypt]",
+]
 
 [project.urls]
 Homepage = "https://github.com/ruckusist/hworld"
@@ -28,6 +30,7 @@ Issues = "https://github.com/ruckusist/hworld/issues"
 
 [project.scripts]
 hworld = "hworld.__main__:main"
+hworld-server = "hworld.server.__main__:Main"
 
 [tool.setuptools.packages.find]
 where = ["."]
