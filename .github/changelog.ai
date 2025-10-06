@@ -1,5 +1,4 @@
-[2025-10-05] Initial project setup completed. Added README.md, .gitignore, GitHub Actions CI workflow, and proposal-001-initial-setup.md. Credit: GitHub Copilot.
-
-[2025-10-05] Added Python packaging setup. Created pyproject.toml, src/hworld/ package structure with main.py entry point, and verified installation and execution. Updated README with installation instructions. Credit: GitHub Copilot.
-
-[2025-10-05] Created GitHub repository at https://github.com/Ruckusist/hworld and pushed all code. Updated README with correct clone URL. Credit: GitHub Copilot.
+[2025-10-05] Added "Immediate Next Steps" section to
+HworldServerClientIntegration_100525.proposal emphasizing design-first
+approach, flexible folder organization, and minimal viable implementation
+starting point. Credit: Sonnet4.5 (GitHub Copilot).
